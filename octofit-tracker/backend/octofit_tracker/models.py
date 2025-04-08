@@ -1,16 +1,19 @@
 from djongo import models
 from bson import ObjectId
 
+
 class User(models.Model):
     _id = models.ObjectIdField(default=ObjectId, primary_key=True)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
 
+
 class Team(models.Model):
     _id = models.ObjectIdField(default=ObjectId, primary_key=True)
     name = models.CharField(max_length=255)
     members = models.JSONField()
+
 
 class Activity(models.Model):
     _id = models.ObjectIdField(default=ObjectId, primary_key=True)
@@ -19,10 +22,12 @@ class Activity(models.Model):
     duration = models.IntegerField()
     date = models.DateField()
 
+
 class Leaderboard(models.Model):
     _id = models.ObjectIdField(default=ObjectId, primary_key=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     points = models.IntegerField()
+
 
 class Workout(models.Model):
     _id = models.ObjectIdField(default=ObjectId, primary_key=True)
